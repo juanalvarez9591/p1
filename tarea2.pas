@@ -37,10 +37,10 @@ begin
             esFrontera := true;
         
         if (not vecinaVacia and not esBorde) then
-            vecinaVacia := not (zonaPelotas[indicePelota.i-1, indicePelota.j].ocupada) or
-                (zonaPelotas[indicePelota.i+1, indicePelota.j].ocupada) or
-                (zonaPelotas[indicePelota.i, indicePelota.j-1].ocupada) or
-                (zonaPelotas[indicePelota.i, indicePelota.j+1].ocupada);
+            vecinaVacia := (not zonaPelotas[indicePelota.i-1, indicePelota.j].ocupada) or
+                (not zonaPelotas[indicePelota.i+1, indicePelota.j].ocupada) or
+                (not zonaPelotas[indicePelota.i, indicePelota.j-1].ocupada) or
+                (not zonaPelotas[indicePelota.i, indicePelota.j+1].ocupada);
 
         if (vecinaVacia) then
             esFrontera := true;

@@ -1,4 +1,6 @@
-1,6c1,9
+1,8c1,9
+< TRUE (0,0)
+< TRUE (0,0)
 < TRUE (0,0)
 < Runtime error 201 at $00000000004007C2
 <   $00000000004007C2 line 63 of tarea2.pas
