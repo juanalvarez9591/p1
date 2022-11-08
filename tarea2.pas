@@ -77,6 +77,7 @@ var chocaFrontera: boolean);
 var i: integer;
 var pelotaFrontera: TPelota;
 begin
+    frontera.tope := 0;
     i := 1;
     chocaFrontera := false;
     darUnPaso(b);
