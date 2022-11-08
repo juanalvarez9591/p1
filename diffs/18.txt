@@ -1,0 +1,17 @@
+1,6c1,9
+< TRUE (0,0)
+< Runtime error 201 at $00000000004007C2
+<   $00000000004007C2 line 63 of tarea2.pas
+<   $0000000000401AD3 line 247 of test_principal.pas
+<   $000000000040018C
+< 
+---
+> TRUE (4,1)
+> TRUE (3,8)
+> TRUE (4,1)
+> TRUE (4,1)
+> TRUE (4,8)
+> FALSE 
+> TRUE (4,4)
+> TRUE (4,8)
+> TRUE (4,1)

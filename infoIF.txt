@@ -1,0 +1,95 @@
+
+ACERCA DE LA INTERFAZ GRÁFICA
+
+# Invocación
+
+La forma de invocar a la interfaz gráfica es
+
+> wish principal.tcl
+
+En el directorio en el que se invoca deben estar los siguientes archivos:
+* principal (o principal.exe): obtenido luego de la compilación del fuente con todas las banderas
+* principal.tk: es la interfaz propiamente dicha
+* auge.png: icono que dice BOOM
+
+Los usuarios de MAC pueden tener inconvenientes para usarla. La actualización
+del software (indicar cómo y qué es, yo no lo se) permite poder usar la interfaz
+satisfactoriamente en muchos casos. Algunas versiones dan el siguiente mensaje
+de error:
+
+Error in startup script: couldn't recognize data in image file "auge.png"
+while executing "image create photo boomorig -file auge.png" ...
+
+En ese caso, invoque a la interfaz de la manera siguiente.
+
+> wish principal.tcl mac
+
+# Interfaz
+
+Al invocar la interfaz se abre una ventana donde puede jugar al Puzzle Bobble
+en la medida que su implementación en tarea2.pas sea adecuada.
+
+Se elige la dirección para disparar el balín moviendo el cursor en el área
+semicircular marcada. Se dispara el balín haciendo click en el botón del ratón.
+Los botones NUEVO, ABRIR, REINICIAR y FIN deberían ser autoexplicativos.
+El botón Ver frontera ilumina la frontera que computa en el procedimiento
+obtenerFrontera. El botón PASO mueve el balín de a un paso por vez.
+
+Debajo de los botones se visualiza la posición y la velocidad del balín.
+
+El botón ABRIR abre un archivo con un despliegue inicial de la zona de pelotas
+proporcionado en un archivo .dat. Si la zona de pelotas tiene 3 filas y 4
+columnas, el archivo de entrada debe ser de la siguiente forma:
+cccc
+cccc
+cccc
+donde cada c es un caracter que representa un color: 'M', 'r', 'b'. Por ejemplo,
+rrrr
+bbbb
+MMMM
+es la zona de pelotas que tiene su primer fila formada por pelotas rojas,
+la segunda por pelotas azules (blue), y la tercera por pelotas
+verdes (MediumSeaGreen).
+
+Cada archivo debe tener la cantidad de filas y columnas que corresponden
+con las constantes CANT_FILAS y CANT_COLUMNAS; debe tener el cuidado de que
+el archivo de pelotas que use esté de acuerdo con esas constantes.
+
+# Configuración
+
+El archivo definiciones.pas cuenta con constantes que afectan el despliegue
+y los colores de las pelotas, así como el tamaño del escenario.
+
+Si modifica las constantes ALTO y ANCHO cambiará el escenario del juego.
+
+Si modifica las constantes CANT_FILAS y CANT_COLUMNAS cambiará la zona de
+pelotas.
+
+Si modifica el tipo TColor y los procedimientos publicaCol y leeColor, cambiará
+los colores y su cantidad. Se han agregado dos colores extras por si desea
+experimentar con ellos.
+
+Si su código es correcto (y el que implementa la interfaz lo es también)
+estos cambios no deberían ocasionar ningún problema con la interfaz.
+
+Los nombres de los colores corresponden a los usados por tk, y el código
+correspondiente es la primera letra de ese
+nombre. Pueden agregar colores modificando el tipo TColor y los
+procedimientos correspondientes, siempre que los colores usados comiencen
+con una letra diferente.
+
+# Depuración (debugging)
+
+Al programar las funciones y procedimientos pedidos en tarea2.pas puede
+resultarle de utilidad usar el procedimiento write para visualizar los
+valores de las variables; cuando usa la interfaz gráfica debe imprimir esos
+mensajes en la salida de error stderr de la forma siguiente:
+
+   Para visualizar el valor de una variable entera N debe escribir
+   writeln (stderr, N)
+   en lugar de
+   writeln (N)
+
+
+
+

@@ -1,0 +1,3 @@
+posicion : (90,400)
+velocidad : (-10,-10)
+

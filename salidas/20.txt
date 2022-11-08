@@ -1,0 +1,10 @@
+==========
+.MMMMMMM
+M.MMMMMM
+bb.bbbbb
+rrr.rrrr
+bbbb.bbb
+rrrrr.rr
+MMMMMM.M
+bbbbbbb.
+==========

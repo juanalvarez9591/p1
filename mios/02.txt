@@ -1,0 +1,3 @@
+posicion : (293,140)
+velocidad : (-11,10)
+

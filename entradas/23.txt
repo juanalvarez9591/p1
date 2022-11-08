@@ -1,0 +1,14 @@
+i
+MMMMMMMM
+MMMMMMMM
+bbbbbbbb
+rrrrrrrr
+bbbbbbbb
+rrrrrrrr
+MMMMMMMM
+bbbbbbbb
+x
+-1
+m
+q
+
