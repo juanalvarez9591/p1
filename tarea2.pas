@@ -52,16 +52,18 @@ var frontera: TSecPelotas);
 var f, c: integer;
 var indicePelota: TIndicePelota;
 begin
+    frontera.tope := 0;
     for f:= 1 to CANT_FILAS do
         begin
             for c:= 1 to CANT_COLUMNAS do
                 begin
                     indicePelota.i := f;
                     indicePelota.j := c;
+
                     if (esFrontera(indicePelota, zonaPelotas)) then
                         begin
                             frontera.tope := frontera.tope + 1;
-                            frontera.sec[frontera.tope] := indicePelota; 
+                            frontera.sec[frontera.tope] := indicePelota;
                         end;
                 end;
         end; 
