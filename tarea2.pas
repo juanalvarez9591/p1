@@ -80,6 +80,8 @@ var indicePelotaFrontera: TIndicePelota;
 var pelotaFrontera: TPelota;
 begin
     finEvaluacion := false;
+    obtenerFrontera(zona, frontera);
+    
     while (not finEvaluacion) do
         begin
             darUnPaso(b);
