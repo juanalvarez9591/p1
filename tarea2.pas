@@ -74,42 +74,36 @@ frontera: TSecPelotas;
 zona : TZonaPelotas;
 var indicePelota: TIndicePelota;
 var chocaFrontera: boolean);
-var i: integer;
-var detener: boolean;
+var n,i,j: integer;
+var trigger: boolean = false;
+var indicePelotaFrontera: TIndicePelota;
 var pelotaFrontera: TPelota;
-var pelotaFronteraIndice: TIndicePelota;
 begin
-
-    while (not detener) do
+    while (not trigger) do
         begin
             darUnPaso(b);
-
-            for i := 1 to frontera.tope do
-                begin
-                    if (zona[frontera.sec[i].i, frontera.sec[i].j].ocupada) then
-                        begin
-                            pelotaFrontera := zona[frontera.sec[i].i, frontera.sec[i].j].pelota;
-                            pelotaFronteraIndice := frontera.sec[i];
-                            if estanChocando(b.pelota, pelotaFrontera) and (not detener) then
-                                begin
-                                    detener := true;
-                                end;
-                        end;
-                end;
+            for n := 1 to frontera.tope do
+                if ((not trigger) and estanChocando(b.pelota, zona[frontera.sec[n].i, frontera.sec[n].j].pelota)) then
+                    begin
+                        trigger := true;
+                        i := frontera.sec[n].i;
+                        j := frontera.sec[n].j;
+                    end;
             
-            if (detener) then
+            if (trigger) then
                 begin 
-                    if (b.pelota.color = pelotaFrontera.color) then
+                    if (b.pelota.color = zona[i,j].pelota.color) then
                         begin
                             chocaFrontera := true;
-                            indicePelota := pelotaFronteraIndice;
+                            indicePelota.i := i;
+                            indicePelota.j := j;
                         end
                         else
                             chocaFrontera := false;
                 end;
             if (b.pelota.posicion.y - RADIO < 0) then
                 begin
-                    detener := true;
+                    trigger := true;
                     chocaFrontera := false;
                 end;
         end;
