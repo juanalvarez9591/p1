@@ -81,7 +81,7 @@ var pelotaFrontera: TPelota;
 begin
     finEvaluacion := false;
     obtenerFrontera(zona, frontera);
-    
+
     while (not finEvaluacion) do
         begin
             darUnPaso(b);
@@ -117,7 +117,6 @@ procedure eliminarPelotas(var zonaPelotas: TZonaPelotas;
 aEliminar: TSecPelotas);
 var i: integer;
 begin
-    i := 1;
     for i:= 1 to aEliminar.tope do
         begin
             zonaPelotas[aEliminar.sec[i].i, aEliminar.sec[i].j].ocupada := false; 
@@ -127,6 +126,8 @@ end;
 function esZonaVacia(zonaPelotas: TZonaPelotas): boolean;
 var f, c: integer;
 begin
+    esZonaVacia := true;
+    
     for f:= 1 to CANT_FILAS do
         begin
             for c:= 1 to CANT_COLUMNAS do
@@ -134,7 +135,6 @@ begin
                     if (zonaPelotas[f, c].ocupada) then
                         esZonaVacia := false;
                 end;
-        end; 
-    esZonaVacia := true;
+        end;
 end;
 
