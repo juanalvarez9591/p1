@@ -74,36 +74,38 @@ frontera: TSecPelotas;
 zona : TZonaPelotas;
 var indicePelota: TIndicePelota;
 var chocaFrontera: boolean);
-var n,i,j: integer;
-var trigger: boolean = false;
+var i: integer;
+var finEvaluacion: boolean;
 var indicePelotaFrontera: TIndicePelota;
 var pelotaFrontera: TPelota;
 begin
-    while (not trigger) do
+    finEvaluacion := false;
+    while (not finEvaluacion) do
         begin
             darUnPaso(b);
-            for n := 1 to frontera.tope do
-                if ((not trigger) and estanChocando(b.pelota, zona[frontera.sec[n].i, frontera.sec[n].j].pelota)) then
-                    begin
-                        trigger := true;
-                        i := frontera.sec[n].i;
-                        j := frontera.sec[n].j;
-                    end;
+            for i := 1 to frontera.tope do
+                begin
+                    if ((not finEvaluacion) and estanChocando(b.pelota, zona[frontera.sec[i].i, frontera.sec[i].j].pelota)) then
+                        begin
+                            finEvaluacion := true;
+                            indicePelotaFrontera := frontera.sec[i];
+                            pelotaFrontera := zona[frontera.sec[i].i, frontera.sec[i].j].pelota;
+                        end;
+                end;
             
-            if (trigger) then
+            if (finEvaluacion) then
                 begin 
-                    if (b.pelota.color = zona[i,j].pelota.color) then
+                    if (b.pelota.color = pelotaFrontera.color) then
                         begin
                             chocaFrontera := true;
-                            indicePelota.i := i;
-                            indicePelota.j := j;
+                            indicePelota := indicePelotaFrontera;
                         end
                         else
                             chocaFrontera := false;
                 end;
             if (b.pelota.posicion.y - RADIO < 0) then
                 begin
-                    trigger := true;
+                    finEvaluacion := true;
                     chocaFrontera := false;
                 end;
         end;
