@@ -75,27 +75,44 @@ zona : TZonaPelotas;
 var indicePelota: TIndicePelota;
 var chocaFrontera: boolean);
 var i: integer;
+var detener: boolean;
 var pelotaFrontera: TPelota;
+var pelotaFronteraIndice: TIndicePelota;
 begin
-    frontera.tope := 0;
-    i := 1;
-    chocaFrontera := false;
-    darUnPaso(b);
-    with b do
-    begin
-        while (i <= frontera.tope) and (not chocaFrontera) do
-            begin
-                i := i + 1;
-                if (zona[frontera.sec[i].i, frontera.sec[i].j].ocupada) then
-                    begin
-                        pelotaFrontera := zona[frontera.sec[i].i, frontera.sec[i].j].pelota;
 
-                        if (estanChocando(pelota, pelotaFrontera) and (pelota.color = pelotaFrontera.color)) then
-                            indicePelota := frontera.sec[i];
+    while (not detener) do
+        begin
+            darUnPaso(b);
+
+            for i := 1 to frontera.tope do
+                begin
+                    if (zona[frontera.sec[i].i, frontera.sec[i].j].ocupada) then
+                        begin
+                            pelotaFrontera := zona[frontera.sec[i].i, frontera.sec[i].j].pelota;
+                            pelotaFronteraIndice := frontera.sec[i];
+                            if estanChocando(b.pelota, pelotaFrontera) and (not detener) then
+                                begin
+                                    detener := true;
+                                end;
+                        end;
+                end;
+            
+            if (detener) then
+                begin 
+                    if (b.pelota.color = pelotaFrontera.color) then
+                        begin
                             chocaFrontera := true;
-                    end;
-            end;
-    end;
+                            indicePelota := pelotaFronteraIndice;
+                        end
+                        else
+                            chocaFrontera := false;
+                end;
+            if (b.pelota.posicion.y - RADIO < 0) then
+                begin
+                    detener := true;
+                    chocaFrontera := false;
+                end;
+        end;
 end;
 
 procedure eliminarPelotas(var zonaPelotas: TZonaPelotas;
