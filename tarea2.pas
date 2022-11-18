@@ -80,11 +80,14 @@ var indicePelotaFrontera: TIndicePelota;
 var pelotaFrontera: TPelota;
 begin
     finEvaluacion := false;
+    i := 1;
     obtenerFrontera(zona, frontera);
 
     while (not finEvaluacion) do
         begin
             darUnPaso(b);
+
+            
             for i := 1 to frontera.tope do
                 begin
                     if ((not finEvaluacion) and estanChocando(b.pelota, zona[frontera.sec[i].i, frontera.sec[i].j].pelota)) then
@@ -125,16 +128,26 @@ end;
 
 function esZonaVacia(zonaPelotas: TZonaPelotas): boolean;
 var f, c: integer;
+var zonaVaciaEncontrada: boolean;
 begin
+    zonaVaciaEncontrada := false;
     esZonaVacia := true;
+    f := 1;
+    c := 1;
     
-    for f:= 1 to CANT_FILAS do
-        begin
-            for c:= 1 to CANT_COLUMNAS do
-                begin
-                    if (zonaPelotas[f, c].ocupada) then
-                        esZonaVacia := false;
-                end;
-        end;
+    while (not zonaVaciaEncontrada) or (f <= CANT_FILAS) do
+    begin
+        if (zonaPelotas[f, c].ocupada) then
+            esZonaVacia := false;
+            zonaVaciaEncontrada := true;
+        
+        c := c + 1;
+
+        if (c > CANT_COLUMNAS) then
+            begin
+                c := 1;
+                f := f + 1;
+            end;
+    end;
 end;
 
